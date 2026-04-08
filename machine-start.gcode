@@ -8,6 +8,7 @@
 ; ===== Date: April 08, 2026 ==========================
 ; ===== Company: Cascade Media LLC ====================
 ; ===== Modified By: Cameron Condry ===================
+; ===== Email: cameron@cascademedia.us ================
 ; =====================================================
 
 ; ===== start warm-up sequence ========================
@@ -87,9 +88,48 @@ G1 X0 F12000                            ; reset to edge
 G1 X-13.5 F3000                         ; double wipe, end in wiper for final flick
 M400                                    ; wait for moves to finish
 
-; @TODO: add switch material in AMS section
+;===== switch material in AMS =========================
+M620 M                                  ; enable remap
+M620 S[initial_no_support_extruder]A
+    G392 S1                             ; enable clog detect
+    M1002 gcode_claim_action : 4        ; status: load filament
+    M400
+    M1002 set_filament_type:UNKNOWN
+    M109 S[nozzle_temperature_initial_layer]
+    M104 S250                           ; set nozzle to common flush temp
+    M400
+    T[initial_no_support_extruder]
+    G1 X-13.5 F3000
+    M400
+    M620.1 E F{filament_max_volumetric_speed[initial_no_support_extruder]/2.4053*60} T{nozzle_temperature_range_high[initial_no_support_extruder]}
+    M109 S250
+    M106 P1 S0
+    G92 E0
+    G1 E50 F200
+    M400
+    M1002 set_filament_type:{filament_type[initial_no_support_extruder]}
+    M104 S{nozzle_temperature_range_high[initial_no_support_extruder]}
+    G92 E0
+    G1 E50 F{filament_max_volumetric_speed[initial_no_support_extruder]/2.4053*60}
+    M400
+    M106 P1 S178
+    G92 E0
+    G1 E5 F{filament_max_volumetric_speed[initial_no_support_extruder]/2.4053*60}
+    M109 S{nozzle_temperature_initial_layer[initial_no_support_extruder]-20}
+    M104 S{nozzle_temperature_initial_layer[initial_no_support_extruder]-40}
+    G92 E0
+    G1 E-0.5 F300
 
+    G1 X0 F24000
+    G1 X-13.5 F3000
+    G1 X0 F24000
+    G1 X-13.5 F3000
+    G1 X0 F24000
+    G1 X-13.5 F3000
 
+    M104 S140                           ; reset nozzle to expected temperature
+    G392 S0                             ; disable clog detect
+M621 S[initial_no_support_extruder]A
 
 ; ===== clean nozzle ==================================
 M1002 gcode_claim_action : 7            ; status: heat the nozzle
@@ -341,7 +381,7 @@ G1 Z5 F3000                             ; final clearance
 M400
 
 ;===== normalize lights/fans ==========================
-; @NOTE: A1 Mini doesn't have all of these features
+; @NOTE: includes defensive Bambu compatibility cleanup for future variants
 M960 S1 P0                              ; light/laser ch1 off
 M960 S2 P0                              ; light/laser ch2 off
 M960 S5 P0                              ; toolhead lamp off
