@@ -2,8 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.4.0] - 2025-11-11
-- Optimized starting temperatures for nozzle cleaning and bed leveling.
+## [1.4.0] - 2026-04-10
+- Reworked startup flow for a quieter, faster, and more deliberate routine.
+- Improved early homing and guarded recovery for safer startup motion.
+- Better staged heating, cleaning, leveling, and calibration handoff.
+- Improved nozzle cleaning with a stronger knock sequence, dual-offset brushing, and final wipe passes.
+- Uses a 170C cleaning phase with hotter-material temperature clamping.
+- Improved startup comments and displayed status messages.
+- Refined motion behavior to reduce wasted movement and unnecessary jostling.
+- Labeled startup sound blocks for easier swapping or removal.
 
 ## [1.3.4] - 2025-11-11
 - Disabled vibration compensation due to eddy sensor warnings.
