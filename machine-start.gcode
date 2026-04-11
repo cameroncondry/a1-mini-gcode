@@ -4,8 +4,8 @@
 
 ; =====================================================
 ; ===== Machine: A1 Mini ==============================
-; ===== Version: 1.4.0 ================================
-; ===== Date: April 10, 2026 ==========================
+; ===== Version: 1.4.1 ================================
+; ===== Date: April 11, 2026 ==========================
 ; ===== Company: Cascade Media LLC ====================
 ; ===== Modified By: Cameron Condry ===================
 ; ===== Email: cameron@cascademedia.us ================
@@ -26,12 +26,15 @@ M9833.2                                 ; bambu: set noise params
 M17                                     ; enable motors for sound
 M400 S1                                 ; wait for sync
 M1006 S1                                ; enable sound speaker
-M1006 A0 B0 L40 C60 D10 M100 E60 F10 N100   ; C5
-M1006 A0 B0 L40 C62 D10 M100 E62 F10 N100   ; D5
-M1006 A0 B0 L40 C64 D10 M100 E64 F10 N100   ; E5
-M1006 A0 B0 L40 C65 D10 M100 E65 F10 N100   ; F5
-M1006 A0 B0 L40 C67 D10 M100 E67 F10 N100   ; G5
-M1006 A0 B0 L80 C72 D10 M100 E72 F10 N100   ; C6
+M1006 A0 B0 L70 C60 D10 M100 E60 F10 N100   ; C5
+M1006 A0 B0 L85 C57 D10 M100 E57 F10 N100   ; A4
+M1006 A0 B0 L70 C60 D10 M100 E60 F10 N100   ; C5
+M1006 A0 B0 L85 C57 D10 M100 E57 F10 N100   ; A4
+M1006 A0 B10 L30 C0 D10 M100 E0 F10 N100    ; short rest
+M1006 A0 B0 L75 C67 D10 M100 E67 F10 N100   ; G5
+M1006 A0 B0 L90 C64 D10 M100 E64 F10 N100   ; E5
+M1006 A0 B0 L75 C67 D10 M100 E67 F10 N100   ; G5
+M1006 A0 B0 L140 C64 D10 M100 E64 F10 N100  ; E5
 M1006 W                                 ; wait for sound to finish
 M18                                     ; disable motors to reset
 

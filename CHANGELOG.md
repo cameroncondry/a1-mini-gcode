@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.4.1] - 2026-04-11
+- Tuned the 0.4mm nozzle startup sound to be similar to the Digivice alert sound.
+- Added `g-code-player.html` to test various startup sounds by emulating the A1 Mini.
+- Added tone options for different startup sounds.
+
 ## [1.4.0] - 2026-04-10
 - Reworked startup flow for a quieter, faster, and more deliberate routine.
 - Improved early homing and guarded recovery for safer startup motion.
